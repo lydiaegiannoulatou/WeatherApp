@@ -3,91 +3,188 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Palm Tree Weather</title>
+    <link rel="icon" type="image/x-icon" href="./images/palm-tree.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner">
+        <div class="palm-tree-loader">🌴</div>
+        <p>Getting weather data...</p>
+      </div>
+    </div>
+
     <!-- HEADER -->
     <header class="header">
-      <h1 id="appTitle">The Palm Tree Weather App</h1>
-      <p> If the Palm Tree is wet, it's raining. If the Palm Tree is swinging, the wind is blowing. If the Palm Tree casts a shadow, the sun is shining. If the Palm Tree is white, it is snowing. If the Palm Tree is missing, there is a tornado...</p>
+      <div class="header-content">
+        <div class="logo-section">
+          <span class="palm-icon">🌴</span>
+          <h1 id="appTitle">Palm Tree Weather</h1>
+        </div>
+        <p class="tagline">If the palm tree's wet, it’s raining. <br>
+If it’s doing the hula, it’s windy.<br>
+If it casts a shadow, congrats—it’s sunny!<br>
+If it’s white, either it snowed or someone got creative with paint.<br>
+If it’s gone… well, congratulations, you just survived a tornado.</p>
+      </div>
     </header>
+
     <!-- SEARCH INPUT -->
-    <div class="searchContainer">
-      <input
-        type="text"
-        id="cityInputField"
-        name="city"
-        placeholder="Enter a city"
-      />
-      <button id="citySearchBtn"><img id="searchIcon" src="./images/search_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Search"></button>
+    <div class="search-section">
+      <div class="searchContainer">
+        <div class="search-input-wrapper">
+          <svg class="search-icon-left" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input
+            type="text"
+            id="cityInputField"
+            name="city"
+            placeholder="Search for a city..."
+          />
+        </div>
+        <button id="citySearchBtn" class="search-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- RESULT BOX -->
-    <div id="allResults" style="display: none;" >
-      <div class="mainContainer">
-        <div id="temp">
-          <h2 id="currentTemp"></h2>
-          <h2 id="resCity"></h2>
-          <h5 id="time"></h5>
-        </div>
-        <div class="resultContainer">
-          <img id="icon" src="*" alt="Weather Icon">
-          <h3 id="resWeather"></h3>
-        </div>
-          <div id="resTemp">
-            <p id="feelTemp"></p>
-            <p id="minTemp"></p>
-            <p id="maxTemp"></p>
-            <p id="toggle">
-              °C
-              <label class="Switch">
-                <input type="checkbox" id="tempToggle" />
-                <span class="slider round" id="tempLabel"></span>
-              </label>
-              °F
-            </p>
+    <div id="allResults" class="results-hidden">
+      <div class="weather-container">
+        <!-- Current Weather Card -->
+        <div class="current-weather-card">
+          <div class="current-weather-header">
+            <div class="location-info">
+              <svg class="location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <h2 id="resCity"></h2>
+            </div>
+            <p id="time" class="current-time"></p>
           </div>
-          <div class="wind">
-            <p id="resWindSpeed"></p>
-            <p id="resWindDeg"></p>
-            <p id="humidity"></p>
+          
+          <div class="current-weather-main">
+            <div class="temperature-section">
+              <div class="main-temp">
+                <h1 id="currentTemp"></h1>
+                <div class="weather-icon-main">
+                  <img id="icon" src="" alt="Weather Icon">
+                </div>
+              </div>
+              <h3 id="resWeather" class="weather-description"></h3>
+            </div>
           </div>
-       
-      </div>
 
-      <!-- 5 DAYS GRID -->
-      <div class="fiveDayCont day1">
-        <h3 class="temp5day" id="day1temp"></h3>
-        <img id="icon1day" src="*" alt="weather Icon" />
-        <p class="nameOfDay" id="day1name"></p>
-        <p class="weatherConditions" id="day1weather"></p>
-      </div>
-      <div class="fiveDayCont day2">
-        <h3 class="temp5day" id="day2temp"></h3>
-        <img id="icon2day" src="*" alt="weather Icon" />
-        <p class="nameOfDay" id="day2name"></p>
-        <p class="weatherConditions" id="day2weather"></p>
-      </div>
-      <div class="fiveDayCont day3">
-        <h3 class="temp5day" id="day3temp"></h3>
-        <img id="icon3day" src="*" alt="weather Icon" />
-        <p class="nameOfDay" id="day3name"></p>
-        <p class="weatherConditions" id="day3weather"></p>
-      </div>
-      <div class="fiveDayCont day4">
-        <h3 class="temp5day" id="day4temp"></h3>
-        <img id="icon4day" src="*" alt="weather Icon" />
-        <p class="nameOfDay" id="day4name"></p>
-        <p class="weatherConditions" id="day4weather"></p>
-      </div>
-      <div class="fiveDayCont day5">
-        <h3 class="temp5day" id="day5temp"></h3>
-        <img id="icon5day" src="*" alt="weather Icon" />
-        <p class="nameOfDay" id="day5name"></p>
-        <p class="weatherConditions" id="day5weather"></p>
+          <div class="weather-details-grid">
+            <div class="detail-card">
+              <div class="detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <p class="detail-label">Feels like</p>
+                <p id="feelTemp" class="detail-value"></p>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5Z"></path>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <p class="detail-label">Humidity</p>
+                <p id="humidity" class="detail-value"></p>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <p class="detail-label">Wind Speed</p>
+                <p id="resWindSpeed" class="detail-value"></p>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="detail-content">
+                <p class="detail-label">Min / Max</p>
+                <div class="min-max-temps">
+                  <span id="minTemp"></span> / <span id="maxTemp"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="temperature-toggle">
+            <span class="toggle-label">°C</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="tempToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label">°F</span>
+          </div>
+        </div>
+
+        <!-- 5 Day Forecast -->
+        <div class="forecast-section">
+          <h3 class="forecast-title">5-Day Forecast</h3>
+          <div class="forecast-grid">
+            <div class="forecast-card day1">
+              <p class="forecast-day" id="day1name"></p>
+              <img id="icon1day" src="" alt="weather Icon" class="forecast-icon" />
+              <p class="forecast-temp" id="day1temp"></p>
+              <p class="forecast-desc" id="day1weather"></p>
+            </div>
+            <div class="forecast-card day2">
+              <p class="forecast-day" id="day2name"></p>
+              <img id="icon2day" src="" alt="weather Icon" class="forecast-icon" />
+              <p class="forecast-temp" id="day2temp"></p>
+              <p class="forecast-desc" id="day2weather"></p>
+            </div>
+            <div class="forecast-card day3">
+              <p class="forecast-day" id="day3name"></p>
+              <img id="icon3day" src="" alt="weather Icon" class="forecast-icon" />
+              <p class="forecast-temp" id="day3temp"></p>
+              <p class="forecast-desc" id="day3weather"></p>
+            </div>
+            <div class="forecast-card day4">
+              <p class="forecast-day" id="day4name"></p>
+              <img id="icon4day" src="" alt="weather Icon" class="forecast-icon" />
+              <p class="forecast-temp" id="day4temp"></p>
+              <p class="forecast-desc" id="day4weather"></p>
+            </div>
+            <div class="forecast-card day5">
+              <p class="forecast-day" id="day5name"></p>
+              <img id="icon5day" src="" alt="weather Icon" class="forecast-icon" />
+              <p class="forecast-temp" id="day5temp"></p>
+              <p class="forecast-desc" id="day5weather"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
