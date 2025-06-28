@@ -1,0 +1,298 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("./images/default.jpg");
+  background-size: cover;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "Palm_tree_font";
+  src: url("./fonts/PalmLeafDemoRegular-lg61w.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* ---HEADER--- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: fit-content;
+  background-color: #e5ecc2ce;
+  box-shadow: 0px 2px 10px #123524;
+}
+#appTitle {
+  font-family: "Palm_tree_font", sans-serif;
+  text-shadow: 0px 2px 3px rgb(77, 77, 77);
+  color: #123524;
+  font-weight: 400;
+  font-size: 3em;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* ---SEARCH INPUT--- */
+
+.searchContainer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
+  width: 50vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+#cityInputField {
+  padding-left: 2rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px 0px 0px 5px;
+  border: none;
+  font-size: 1.2rem;
+  background-color: #e5ecc2ce;
+}
+
+#cityInputField:focus {
+  border: none;
+  outline: none;
+  background-color: #fefaece5;
+}
+
+#citySearchBtn {
+  font-size: 1.2rem;
+  height: 100%;
+  width: 20%;
+  border: none;
+  border-radius: 0px 10px 10px 0px;
+  background-color: #85a9479d;
+}
+
+#searchIcon {
+  color: #123524;
+}
+
+/* ---RESULT BOX--- */
+#allResults {
+  background-color: #e5ecc297;
+  box-shadow: 2px 5px 8px rgb(40, 40, 40);
+  max-height: fit-content;
+  width: 80vw;
+  padding: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+  grid-template-areas:
+    "main main main day1 day2"
+    "main main main day3 day4"
+    "main main main day5 day5";
+  margin-top: 3rem;
+}
+
+.mainContainer {
+  box-shadow: 2px 5px 8px rgb(40, 40, 40);
+  background: linear-gradient(to bottom, #c3d076ce, #3e7b27ce);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "mainInfo temperature"
+    "tempInfo windInfo";
+  grid-gap: 2.5rem;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1.2rem;
+  padding: 2rem;
+  color: #123524;
+  font-size: larger;
+  border-radius: 8px;
+  grid-area: main;
+}
+#temp {
+  grid-area: temperature;
+  line-height: 5rem;
+  border-radius: 5px;
+  padding: 1.2rem;
+}
+#currentTemp {
+  font-size: 5rem;
+}
+#resCity {
+  font-size: 2.5rem;
+}
+#time {
+  font-size: large;
+}
+.resultContainer {
+  grid-area: mainInfo;
+}
+
+#resTemp {
+  grid-area: tempInfo;
+  border-radius: 5px;
+  padding: 1.2rem;
+  line-height: 2rem;
+  border: 1px solid #123524;
+}
+.wind {
+  grid-area: windInfo;
+  border-radius: 5px;
+  padding: 1.2rem;
+  line-height: 2rem;
+  border: 1px solid #123524;
+}
+/* toggle-temp */
+.Switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin: 0 10px;
+}
+
+.Switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5ecc2ce;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: rgb(23, 59, 41);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #efe3c2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+p {
+  display: flex;
+  align-items: center;
+}
+
+.weatherDetails {
+  display: flex;
+  gap: 3rem;
+  font-size: 1.5rem;
+}
+
+/* five day weather */
+
+.fiveDayCont {
+  padding: 0.5rem;
+  background: linear-gradient(to bottom, #c3d076ce, #3e7b27ce);
+  border-radius: 8px;
+  box-shadow: 2px 5px 8px rgb(40, 40, 40);
+  color: #123524;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.day1 {
+  grid-area: day1;
+}
+
+.day2 {
+  grid-area: day2;
+}
+.day3 {
+  grid-area: day3;
+}
+
+.day4 {
+  grid-area: day4;
+}
+
+.day5 {
+  grid-area: day5;
+}
+
+@media (min-width: 600px) and (max-width: 1279px) {
+  #allResults {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    grid-template-areas:
+      "main main"
+      "main main "
+      "main main"
+      "day1 day2"
+      "day3 day4"
+      "day5 day5";
+  }
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  #appTitle {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 599px) {
+  #allResults {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main"
+    "day1"
+    "day2"
+    "day3"
+    "day4"
+    "day5";
+  }
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+  #currentTemp {
+    font-size: 2.7rem;
+  }
+  #resCity {
+    font-size: 2rem;
+  }
+
+  #appTitle {
+    font-size: 1.8rem;
+  }
+
+  .header{
+    width: 100%;
+  }
+}
